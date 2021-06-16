@@ -1,18 +1,18 @@
-console.log("app.js")
+console.log("-------------Javascript Drum Kit-------------");
 
-const playBeats = e => {
-    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`)
-    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`)
-    
-    if(!audio || !key){
-        return;
-    }
-    key.classList.add('playing')
-    audio.currentTime = 0; // rewind to the start
-    audio.play();
-}
+const playBeats = (e) => {
+  const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+  const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
 
-window.addEventListener('keydown', playBeats)
+  if (!audio || !key) {
+    return;
+  }
+  key.classList.add("playing");
+  audio.currentTime = 0; // rewind to the start
+  audio.play();
+};
+
+window.addEventListener("keydown", playBeats);
 
 // window.addEventListener('keyup', e => {
 //     const key = document.querySelector(`.key[data-key="${e.keyCode}"]`)
@@ -22,12 +22,12 @@ window.addEventListener('keydown', playBeats)
 //     key.classList.remove('playing')
 // })
 
-const keys = document.querySelectorAll('.key');
-
-function animateDrumKeys(e){
-    if(e.propertyName !== "transform") return;
-    console.log(this);
-    this.classList.remove('playing');
+function animateDrumKeys(e) {
+  if (e.propertyName !== "transform") return;
+  console.log(this);
+  this.classList.remove("playing");
 }
 
-keys.forEach(key => key.addEventListener('transitionend', animateDrumKeys))
+const keys = document.querySelectorAll(".key");
+
+keys.forEach((key) => key.addEventListener("transitionend", animateDrumKeys));
